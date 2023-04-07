@@ -1,0 +1,9 @@
+Comando CDK
+    - cdk init --language typescript
+    - cdk list -> lista todas as stacks dentro do projeto
+    - cdk deploy --all -> comando para instalar todos os recursos do nosso projeto
+    - cdk diff
+    - cdk destroy --all -> destroi tudo que foi feito no projeto
+
+Comandos NPM
+    - npm i aws-sdk @types/aws-lambda @types/uuid --save-dev
