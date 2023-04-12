@@ -6,4 +6,5 @@ Comando CDK
     - cdk destroy --all -> destroi tudo que foi feito no projeto
 
 Comandos NPM
+    - npm i aws-lambda 
     - npm i aws-sdk @types/aws-lambda @types/uuid --save-dev

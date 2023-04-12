@@ -1,16 +1,17 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
 
-export async function handler(event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
+export async function handler(event: APIGatewayProxyEvent, 
+    context: Context): Promise<APIGatewayProxyResult> {
     
     const lambdaRequestId = context.awsRequestId
     const apiRequestId = event.requestContext.requestId
 
-    console.log(`API Gateway RequestId: ${lambdaRequestId} - Lambda RequestId: ${apiRequestId}`)
+    console.log(`API Gateway RequestId: ${lambdaRequestId} - Lambda RequestId: ${apiRequestId}`) // retorna um log para o cloudWatch
     
     const method = event.httpMethod
     if (event.resource === '/products') {
         if (method === 'GET') {
-            console.log('GET')
+            console.log('GET') // retorna um log para o cloudWatch
 
             return {
                 statusCode: 200,
@@ -22,7 +23,7 @@ export async function handler(event: APIGatewayProxyEvent, context: Context): Pr
     }
 
     return {
-        statusCode: 404,
+        statusCode: 400,
         body: JSON.stringify({
             message: 'Bad Request'
         })
