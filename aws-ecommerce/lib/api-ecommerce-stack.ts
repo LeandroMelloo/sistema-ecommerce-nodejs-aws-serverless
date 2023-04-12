@@ -21,7 +21,7 @@ export class ApiEcommerceStack extends cdk.Stack {
         // this = scope, 'ApiEcommerce' = id, props = {}
         const api = new apigateway.RestApi(this, 'ApiEcommerce', {
             restApiName: 'ApiEcommerce',      
-            //cloudWatchRole: true,
+            cloudWatchRole: true,
             deployOptions: {
                 accessLogDestination: new apigateway.LogGroupLogDestination(logGroup),
                 accessLogFormat: apigateway.AccessLogFormat.jsonWithStandardFields({

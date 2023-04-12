@@ -4,6 +4,7 @@ Comando CDK
     - cdk deploy --all -> comando para instalar todos os recursos do nosso projeto
     - cdk diff
     - cdk destroy --all -> destroi tudo que foi feito no projeto
+    - cdk bootstrap -> precisa ser executado uma única vez por conta e region
 
 Comandos NPM
     - npm i aws-lambda 
