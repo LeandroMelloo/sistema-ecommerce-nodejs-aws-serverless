@@ -12,7 +12,7 @@ export async function handler(
   const apiRequestId = event.requestContext.requestId;
 
   console.log(
-    `API Gateway RequestId: ${lambdaRequestId} - Lambda RequestId: ${apiRequestId}`
+    `API Gateway RequestId: ${apiRequestId} - Lambda RequestId: ${lambdaRequestId}`
   ); // retorna um log para o cloudWatch
 
   const method = event.httpMethod;
@@ -32,7 +32,7 @@ export async function handler(
   return {
     statusCode: 400,
     body: JSON.stringify({
-      message: "Bad Request",
+      message: "Bad request",
     }),
   };
 }

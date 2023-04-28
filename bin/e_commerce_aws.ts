@@ -2,8 +2,8 @@
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import * as dotenv from "dotenv";
-import { AppProductStack } from "../lib/app-product-stack";
-import { ApiEcommerceStack } from "../lib/api-ecommerce-stack";
+import { ProductsAppStack } from "../lib/productsApp-stack";
+import { ECommerceApiStack } from "../lib/ecommerceApi-stack";
 
 dotenv.config({ path: __dirname + "/.env" });
 
@@ -20,16 +20,16 @@ const tags = {
   team: "DeveloperCode",
 };
 
-const appProductStack = new AppProductStack(app, "AppProduct", {
+const productsAppStack = new ProductsAppStack(app, "AppProduct", {
   tags: tags,
   env: env,
 });
 
-const apiEcommerceStack = new ApiEcommerceStack(app, "ApiEcommerce", {
-  productsFetchHandler: appProductStack.productsFetchHandler,
+const eCommerceApiStack = new ECommerceApiStack(app, "ECommerceApi", {
+  productsFetchHandler: productsAppStack.productsFetchHandler,
   tags: tags,
   env: env,
 });
 
 // deixar explicito a dependência da stack
-apiEcommerceStack.addDependency(appProductStack);
+eCommerceApiStack.addDependency(productsAppStack);

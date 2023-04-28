@@ -3,7 +3,7 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 // Class que representa uma stack de Produto
-export class AppProductStack extends cdk.Stack {
+export class ProductsAppStack extends cdk.Stack {
   // readonly é utilizado para tornar uma propriedade somente de leitura
   readonly productsFetchHandler: lambdaNodeJS.NodejsFunction;
 

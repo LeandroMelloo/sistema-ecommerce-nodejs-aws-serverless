@@ -4,22 +4,22 @@ import * as lambdaNodeJS from "aws-cdk-lib/aws-lambda-nodejs";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as cwlogs from "aws-cdk-lib/aws-logs"; // cw = cloudWatch
 
-interface PropsApiEcommerceStack extends cdk.StackProps {
+interface ECommerceApiStackProps extends cdk.StackProps {
   productsFetchHandler: lambdaNodeJS.NodejsFunction;
 }
 
 // Api do meu ecommerce como um todo
-export class ApiEcommerceStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props: PropsApiEcommerceStack) {
+export class ECommerceApiStack extends cdk.Stack {
+  constructor(scope: Construct, id: string, props: ECommerceApiStackProps) {
     // super é o construtor pai, passando os 3 parâmetros, scope é aonde que a stack está inserida
     super(scope, id, props);
 
     // geração de logs
-    const logGroup = new cwlogs.LogGroup(this, "ApiEcommerceLogs");
+    const logGroup = new cwlogs.LogGroup(this, "ECommerceApiLogs");
 
-    // this = scope, 'ApiEcommerce' = id, props = {}
-    const api = new apigateway.RestApi(this, "ApiEcommerce", {
-      restApiName: "ApiEcommerce",
+    // this = scope, 'ECommerceApi' = id, props = {}
+    const api = new apigateway.RestApi(this, "ECommerceApi", {
+      restApiName: "ECommerceApi",
       cloudWatchRole: true,
       deployOptions: {
         accessLogDestination: new apigateway.LogGroupLogDestination(logGroup),
