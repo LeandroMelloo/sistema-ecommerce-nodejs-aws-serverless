@@ -1,31 +1,38 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
+import {
+  APIGatewayProxyEvent,
+  APIGatewayProxyResult,
+  Context,
+} from "aws-lambda";
 
-export async function handler(event: APIGatewayProxyEvent, 
-    context: Context): Promise<APIGatewayProxyResult> {
-    
-    const lambdaRequestId = context.awsRequestId
-    const apiRequestId = event.requestContext.requestId
+export async function handler(
+  event: APIGatewayProxyEvent,
+  context: Context
+): Promise<APIGatewayProxyResult> {
+  const lambdaRequestId = context.awsRequestId;
+  const apiRequestId = event.requestContext.requestId;
 
-    console.log(`API Gateway RequestId: ${lambdaRequestId} - Lambda RequestId: ${apiRequestId}`) // retorna um log para o cloudWatch
-    
-    const method = event.httpMethod
-    if (event.resource === '/products') {
-        if (method === 'GET') {
-            console.log('GET') // retorna um log para o cloudWatch
+  console.log(
+    `API Gateway RequestId: ${lambdaRequestId} - Lambda RequestId: ${apiRequestId}`
+  ); // retorna um log para o cloudWatch
 
-            return {
-                statusCode: 200,
-                body: JSON.stringify({
-                    message:'GET Products - OK'
-                })
-            }
-        }
-    }
+  const method = event.httpMethod;
+  if (event.resource === "/products") {
+    if (method === "GET") {
+      console.log("GET"); // retorna um log para o cloudWatch
 
-    return {
-        statusCode: 400,
+      return {
+        statusCode: 200,
         body: JSON.stringify({
-            message: 'Bad Request'
-        })
+          message: "GET Products - OK",
+        }),
+      };
     }
+  }
+
+  return {
+    statusCode: 400,
+    body: JSON.stringify({
+      message: "Bad Request",
+    }),
+  };
 }
